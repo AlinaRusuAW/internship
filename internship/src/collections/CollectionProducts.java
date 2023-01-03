@@ -28,11 +28,15 @@ public class CollectionProducts {
             ex.printStackTrace ();
         } finally {
             try{bw.close ();
-        }catch (Exception ex){}}}
+        }catch (Exception ex){}
+        }
+    }
+    /*Metoda de inscriere a datelor in fisier nou product-output.txt*/
 
     private static void display(Map<Integer, String> productsMap) {
         productsMap.keySet().forEach(key-> System.out.println(key + " = " + productsMap.get(key)));
     }
+    /*Metoda de afisare a datelor din fisier dupa key si valoare*/
 
     private static Map<Integer, String> readFile(String filePath) {
             Map<Integer, String> lines = new HashMap<> ();
@@ -50,7 +54,7 @@ public class CollectionProducts {
                 Integer cod = Integer.parseInt(lineSplit[0]);
                 String productName = lineSplit[1];
                 lines.put(cod, productName);
-                lines.put(6,"portocale");
+                lines.put(6,"portocale");         // adaugam produse noi
                 lines.put(7,"suc");
                 lines.put(8,"cadouri");
                 lines.put(9,"globuri");
@@ -59,4 +63,5 @@ public class CollectionProducts {
             }
             return lines;
         }
+        /*Metoda care citeste datele din fisier line cu linie*/
 }

@@ -1,5 +1,5 @@
-Rusu|28/07/2000
-Moraru|23/01/1999
-Moscalu|12/07/1992
-Ciorici|13/04/2000
-Cuculescu|26/12/1990
+Rusu|22
+Moraru|23
+Moscalu|30
+Ciorici|22
+Cuculescu|32

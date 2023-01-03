@@ -1,9 +1,9 @@
 package collections;
 
 import java.io.*;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -36,15 +36,17 @@ public class CollectionsUsage {
             String nume = lineSplit[0];
             String prenume = lineSplit[1];
             String dat = lineSplit[2];
-           // Date d = new SimpleDateFormat("dd/mm/yyyy").parse(dat);
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-            LocalDate d1 = LocalDate.parse (formatter.format (dat));
+            String DATE_FORMAT_PATTERN = "dd/MM/yyyy";
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern (DATE_FORMAT_PATTERN);
+            LocalDate d1 = LocalDate.parse (dat, formatter);
             LocalDate currentDate = LocalDate.now();
-            int age = Period.between(d1, LocalDate.parse (formatter.format (currentDate))).getYears();
+            int age = Period.between(d1, currentDate).getYears();
             lines.put (nume, age);
         }
         return lines;
     }
+    /*Metoda care calculeaza virsta angajatilor dupa ziua de nastere,
+    datele de iesire sunt inscrise in fisierul emploee-final.txt*/
 
     private static void write(Map<String, Integer> dateMap, String outputFilePath) {
         File file = new File (outputFilePath);
@@ -81,6 +83,8 @@ public class CollectionsUsage {
         }
         return name;
     }
+    /*Metoda care extrage din lista angajatilor doar numele lor, fara ca sa se repete*/
+
     private static void display(HashSet<String> employeeSet) {
         employeeSet.forEach (System.out::println);
         System.out.println("------------------------");
@@ -101,6 +105,7 @@ public class CollectionsUsage {
         }
         return lines;
         }
+    /*Metoda de citire a fisierului linie cu linie si stocate intr-o lista*/
 
         private static void display1(List<String> employee) {
             employee.forEach (System.out::println);
@@ -112,5 +117,5 @@ public class CollectionsUsage {
             sortEmployee.forEach (System.out::println);
             System.out.println("------------------------");
         }
-
+    /*Metoda care ordoneaza in ordine alfabetica lista angajatilor*/
 }
