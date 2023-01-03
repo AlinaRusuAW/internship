@@ -1,0 +1,10 @@
+1|brad
+2|jucarii
+3|stea
+4|lumini
+5|dulciuri
+6|portocale
+7|suc
+8|cadouri
+9|globuri
+10|fructe

@@ -1,0 +1,5 @@
+1|brad
+2|jucarii
+3|stea
+4|lumini
+5|dulciuri

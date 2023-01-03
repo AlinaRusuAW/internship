@@ -1,0 +1,2 @@
+Fraza va fi citită din fișierul input.txt, iar rezultatele vor fi scrise în fișierul output.txt.
+Fișierele input.txt și output.txt vor fi stocate în pachetul de resurse.

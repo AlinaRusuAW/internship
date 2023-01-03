@@ -1,19 +1,89 @@
 package collections;
 
 import java.io.*;
-import java.sql.SQLOutput;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class CollectionsUsage {
-    public static void main(String[] args) {
-        String filePath ="src/resources/employee-input.txt";
+    public static void main(String[] args) throws Exception {
+        String filePath = "src/resources/employee-input.txt";
         List<String> employee = readFile (filePath);
-        display(employee);
+        HashSet<String> employeeSet = extra (filePath);
+        display(employeeSet);
+        display1 (employee);
         sort(employee);
-        extra(employee);
+        Map<String, Integer> dateMap = readFile1(filePath);
+        String outputFilePath = "src/resources/employee-final.txt";
+        write(dateMap, outputFilePath);
+    }
+
+    private static Map<String, Integer> readFile1(String filePath) throws Exception {
+        Map<String, Integer> lines = new HashMap<> ();
+        File file = new File (filePath);
+        FileInputStream fileInputStream = null;
+        try {
+            fileInputStream = new FileInputStream (file);
+        } catch (FileNotFoundException e) {
+            System.out.println (e.getMessage ());
+        }
+        Scanner scanner = new Scanner (fileInputStream);
+        while (scanner.hasNext ()) {
+            String line = scanner.nextLine ();
+            String[] lineSplit = line.split ("\\|");
+            String nume = lineSplit[0];
+            String prenume = lineSplit[1];
+            String dat = lineSplit[2];
+           // Date d = new SimpleDateFormat("dd/mm/yyyy").parse(dat);
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            LocalDate d1 = LocalDate.parse (formatter.format (dat));
+            LocalDate currentDate = LocalDate.now();
+            int age = Period.between(d1, LocalDate.parse (formatter.format (currentDate))).getYears();
+            lines.put (nume, age);
+        }
+        return lines;
+    }
+
+    private static void write(Map<String, Integer> dateMap, String outputFilePath) {
+        File file = new File (outputFilePath);
+        BufferedWriter bw = null;
+        try{
+            bw = new BufferedWriter (new FileWriter (file));
+            for(Map.Entry<String, Integer> entry : dateMap.entrySet()){
+                bw.write( entry.getKey() + "|" + entry.getValue() );
+                bw.newLine();
+            }
+            bw.flush ();
+        }catch (IOException ex){
+            ex.printStackTrace ();
+        } finally {
+            try{bw.close ();
+            }catch (Exception ex){}}
+    }
+
+    private static HashSet<String> extra(String filePath) {
+        HashSet<String> name = new HashSet<> ();
+        File file = new File (filePath);
+        FileInputStream fileInputStream = null;
+        try {
+            fileInputStream = new FileInputStream (file);
+        } catch (FileNotFoundException e) {
+            System.out.println (e.getMessage ());
+        }
+        Scanner scanner = new Scanner (fileInputStream);
+        while (scanner.hasNext ()) {
+            String line = scanner.nextLine ();
+            String[] lineSplit = line.split ("\\|");
+            String nume = lineSplit[1];
+            name.add (nume);
+        }
+        return name;
+    }
+    private static void display(HashSet<String> employeeSet) {
+        employeeSet.forEach (System.out::println);
+        System.out.println("------------------------");
     }
 
     private static List<String> readFile(String filePath) {
@@ -32,7 +102,7 @@ public class CollectionsUsage {
         return lines;
         }
 
-        private static void display(List<String> employee) {
+        private static void display1(List<String> employee) {
             employee.forEach (System.out::println);
             System.out.println("------------------------");
         }
@@ -43,43 +113,4 @@ public class CollectionsUsage {
             System.out.println("------------------------");
         }
 
-        private static void extra(List<String> employee){
-            System.out.println (employee.contains ("Alina"));
-            System.out.println("------------------------");
-        }
-
-
-
-       /* ArrayList<String> arrayList = new ArrayList<String> ();
-        Scanner scanner = new Scanner ("src/resources/employee-input.txt");
-        while (scanner.hasNextLine ()) {
-            arrayList.add (scanner.nextLine ());
-        }
-        scanner.close ();*/
-
-
-   /*     ArrayList<String> arrayList = new ArrayList<String> ();
-        try(BufferedReader bufferedReader = new BufferedReader (new FileReader ("src/resources/employee-input.txt"))){
-            String line;
-            while ((line = bufferedReader.readLine()) != null){
-                arrayList.add(line);
-                System.out.println (line);
-            }
-        } catch (IOException e){
-            e.printStackTrace ();
-        }*/
-
-       /* try{
-            FileInputStream file = new FileInputStream ("C:/Users/Lenovo/IdeaProjects/internship/src/resources/employee-input.txt");
-            int a = 0;
-            while ((a = file.read ()) != 0){
-                System.out.println ((char) a);
-            }
-            file.close ();
-        } catch (Exception e){
-            System.out.println (e);
-        } // se citeste cite un singur caracter in rind
-*/
-
 }
-
