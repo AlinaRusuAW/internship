@@ -1,0 +1,5 @@
+1|Rusu|Alina|3|4000
+2|Adauje|Valentina|2|5000
+3|Mocanu|Ion|1|8000
+4|Vieru|Ala|3|4000
+5|Galaicu|Eugen|1|4000

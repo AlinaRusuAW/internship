@@ -113,7 +113,7 @@ public class CollectionsUsage {
         }
 
         private static void sort(List<String> employee){
-            List<String> sortEmployee = employee.stream ().sorted ().collect(Collectors.toList());
+            List<String> sortEmployee = employee.stream().sorted().collect(Collectors.toList());
             sortEmployee.forEach (System.out::println);
             System.out.println("------------------------");
         }
