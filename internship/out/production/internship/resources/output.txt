@@ -1,0 +1,9 @@
+[Fraza va fi citită din fișierul input.txt, iar rezultatele vor fi scrise în fișierul output.txt a a]
+[fraza va fi citită din fișierul input.txt, iar rezultatele vor fi scrise în fișierul output.txt a a]
+[FRAZA VA FI CITITĂ DIN FIȘIERUL INPUT.TXT, IAR REZULTATELE VOR FI SCRISE ÎN FIȘIERUL OUTPUT.TXT A A]
+Lungimea frazei este: 101
+Avem 33 vocale si 52 consoane.
+Fraza contine 17 cuvinte.
+Cel mai scurt cuvint este: a
+Cel mai lung cuvint este: rezultatele
+[]
